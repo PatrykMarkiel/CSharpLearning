@@ -12,12 +12,18 @@ public class Program
     {
         IWorker human = new HumanWorker();
         IWorker robot = new RobotWorker();
-        IWorker worker = new RobotWorker();
+        IWorker alien = new AlienWorker();
+
         WorkerManager humanManager = new WorkerManager(new HumanWorker());
         WorkerManager robotManager = new WorkerManager(new RobotWorker());
-        worker.Work();
+        WorkerManager alienManager = new WorkerManager(new AlienWorker());
+
+        robotManager.Start();
+        alienManager.Start();
+        humanManager.Start();
 
         StartWork(human);
         StartWork(robot);
+        StartWork(alien);
     }
 }
