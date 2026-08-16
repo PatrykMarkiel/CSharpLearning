@@ -1,34 +1,23 @@
-﻿public interface IWorker
+﻿using SolidPrinciplesTraining;
+using SolidPrinciplesTraining.Interfaces;
+using SolidPrinciplesTraining.Workers;
+public class Program
 {
-    void Work();
-}
-public interface IEatable
-{
-    void Eat();
-}
-public interface ISleepable
-{
-    void Sleep();
-}
-public class HumanWorker : IWorker, IEatable, ISleepable
-{
-    public void Work()
+    static void StartWork(IWorker worker)
     {
-        Console.WriteLine("Worker is working.");
+        worker.Work();
     }
-    public void Eat()
+
+    static void Main()
     {
-        Console.WriteLine("Worker is eating.");
-    }
-    public void Sleep()
-    {
-        Console.WriteLine("Worker is sleeping.");
-    }
-}
-public class RobotWorker:IWorker
-{
-    public void Work()
-    {
-        Console.WriteLine("Robot is working.");
+        IWorker human = new HumanWorker();
+        IWorker robot = new RobotWorker();
+        IWorker worker = new RobotWorker();
+        WorkerManager humanManager = new WorkerManager(new HumanWorker());
+        WorkerManager robotManager = new WorkerManager(new RobotWorker());
+        worker.Work();
+
+        StartWork(human);
+        StartWork(robot);
     }
 }
