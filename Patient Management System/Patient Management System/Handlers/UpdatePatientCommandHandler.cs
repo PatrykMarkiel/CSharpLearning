@@ -6,18 +6,20 @@ using Patient_Management_System.Commands;
 
 namespace Patient_Management_System.Handlers
 {
-    public class UpdatePatientDateOfBirthCommandHandler
+    public class UpdatePatientCommandHandler
     {
         private readonly PatientRepository _patientRepository;
-        public UpdatePatientDateOfBirthCommandHandler(PatientRepository patientRepository)
+        public UpdatePatientCommandHandler(PatientRepository patientRepository)
         {
             _patientRepository = patientRepository;
         }
-        public void Handle(UpdatePatientDateOfBirthCommand command)
+        public void Handle(UpdatePatientCommand command)
         {
             var patient = _patientRepository.GetPatientById(command.Id);
             if (patient != null)
             {
+                patient.FirstName = command.FirstName;
+                patient.LastName = command.LastName;
                 patient.DateOfBirth = command.DateOfBirth;
             }
         }
