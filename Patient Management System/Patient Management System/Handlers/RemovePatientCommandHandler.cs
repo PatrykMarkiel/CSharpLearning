@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Patient_Management_System.Commands;
+﻿using Patient_Management_System.Commands;
 using Patient_Management_System.Repositories;
-using Patient_Management_System.Models;
+using Patient_Management_System.Interface;
 namespace Patient_Management_System.Handlers
 {
     public class RemovePatientCommandHandler
     {
-        private readonly PatientsRepository _patientsRepository;
-        public RemovePatientCommandHandler(PatientsRepository patientRepository)
+        private readonly IPatientWriter _patientWriter;
+        public RemovePatientCommandHandler(IPatientWriter patientWriter)
         {
-            _patientsRepository = patientRepository;
+            _patientWriter = patientWriter;
         }
         public void Handle(RemovePatientCommand command)
         {
-            _patientsRepository.RemovePatient(command.Id);
+            _patientWriter.RemovePatient(command.Id);
         }
     }
 }

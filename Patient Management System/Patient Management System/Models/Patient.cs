@@ -1,7 +1,4 @@
 ﻿using Patient_Management_System.Interface;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Patient_Management_System.Models
 {

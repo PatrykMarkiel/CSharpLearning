@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
+﻿using Patient_Management_System.Interface;
 using Patient_Management_System.Models;
 namespace Patient_Management_System.Repositories
 {
-    public class PatientsRepository
+    public class PatientRepository : IPatientReader, IPatientWriter
     {
-        private readonly List<Patient> _patients = new();
+        private readonly List<Patient> _patient = new();
         public void AddPatient(Patient patient)
         {
-            _patients.Add(patient);
+            _patient.Add(patient);
         }
         public void UpdatePatient(Patient patient)
         {
@@ -27,12 +24,12 @@ namespace Patient_Management_System.Repositories
             var patient = GetPatientById(id);
             if (patient != null)
             {
-                _patients.Remove(patient);
+                _patient.Remove(patient);
             }
         }
         public Patient? GetPatientById(Guid id)
         {
-            return _patients.Find(p => p.Id == id);
+            return _patient.Find(p => p.Id == id);
 
         }
     }

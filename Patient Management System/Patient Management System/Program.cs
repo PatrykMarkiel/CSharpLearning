@@ -1,6 +1,6 @@
 ﻿using Patient_Management_System.Commands;
 using Patient_Management_System.Handlers;
-using Patient_Management_System.Models;
+using Patient_Management_System.Interface;
 using Patient_Management_System.Queries;
 using Patient_Management_System.Repositories;
 
@@ -10,12 +10,14 @@ namespace Patient_Management_System
     {
         static void Main(string[] args)
         {
-            PatientsRepository patientsRepository = new PatientsRepository();
+            PatientRepository patientRepository = new PatientRepository();
+            IPatientReader patientReader = patientRepository;
+            IPatientWriter patientWriter = patientRepository;
 
-            CreatePatientCommandHandler createPatientCommandHandler = new CreatePatientCommandHandler(patientsRepository);
-            UpdatePatientCommandHandler updatePatientCommandHandler = new UpdatePatientCommandHandler(patientsRepository);
-            RemovePatientCommandHandler removePatientCommandHandler = new RemovePatientCommandHandler(patientsRepository);
-            GetPatientByIdQueryHandler getPatientByIdQueryHandler = new GetPatientByIdQueryHandler(patientsRepository);
+            CreatePatientCommandHandler createPatientCommandHandler = new CreatePatientCommandHandler(patientWriter);
+            UpdatePatientCommandHandler updatePatientCommandHandler = new UpdatePatientCommandHandler(patientReader, patientWriter);
+            RemovePatientCommandHandler removePatientCommandHandler = new RemovePatientCommandHandler(patientWriter);
+            GetPatientByIdQueryHandler getPatientByIdQueryHandler = new GetPatientByIdQueryHandler(patientReader);
 
             CreatePatientCommand createPatientCommand = new CreatePatientCommand
             {

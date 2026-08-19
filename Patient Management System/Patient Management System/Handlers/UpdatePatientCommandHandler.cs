@@ -1,24 +1,24 @@
-﻿using Patient_Management_System.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Patient_Management_System.Commands;
-
+﻿using Patient_Management_System.Commands;
+using Patient_Management_System.Interface;
 
 namespace Patient_Management_System.Handlers
 {
     public class UpdatePatientCommandHandler
     {
-        private readonly PatientsRepository _patientsRepository;
+        private readonly IPatientReader _patientReader;
+        private readonly IPatientWriter _patientWriter;
 
-        public UpdatePatientCommandHandler(PatientsRepository patientsRepository)
+        public UpdatePatientCommandHandler(
+            IPatientReader patientReader,
+            IPatientWriter patientWriter)
         {
-            _patientsRepository = patientsRepository;
+            _patientReader = patientReader;
+            _patientWriter = patientWriter;
         }
 
         public void Handle(UpdatePatientCommand command)
         {
-            var patient = _patientsRepository.GetPatientById(command.Id);
+            var patient = _patientReader.GetPatientById(command.Id);
 
             if (patient == null)
             {
@@ -39,6 +39,8 @@ namespace Patient_Management_System.Handlers
             {
                 patient.DateOfBirth = command.DateOfBirth;
             }
+
+            _patientWriter.UpdatePatient(patient);
         }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Patient_Management_System.Commands
+﻿namespace Patient_Management_System.Commands
 {
     public class UpdatePatientCommand
     {
