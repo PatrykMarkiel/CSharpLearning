@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Patient_Management_System.Queries;
+using Patient_Management_System.Commands;
 using Patient_Management_System.Repositories;
 using Patient_Management_System.Models;
 namespace Patient_Management_System.Handlers
 {
-    internal class GetPatientByIdQueryHandler
+    public class RemovePatientCommandHandler
     {
         private readonly PatientsRepository _patientsRepository;
-        public GetPatientByIdQueryHandler(PatientsRepository patientRepository)
+        public RemovePatientCommandHandler(PatientsRepository patientRepository)
         {
             _patientsRepository = patientRepository;
         }
-        public Patient? Handle(GetPatientByIdQuery query)
+        public void Handle(RemovePatientCommand command)
         {
-            return _patientsRepository.GetPatientById(query.Id);
+            _patientsRepository.RemovePatient(command.Id);
         }
     }
 }

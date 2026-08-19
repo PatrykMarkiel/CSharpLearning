@@ -8,12 +8,12 @@ namespace Patient_Management_System.Handlers
 {
     internal class CreatePatientCommandHandler
     {
-        private readonly PatientRepository _patientRepository;
-        public CreatePatientCommandHandler(PatientRepository patientRepository)
+        private readonly PatientsRepository _patientsRepository;
+        public CreatePatientCommandHandler(PatientsRepository patientRepository)
         {
-            _patientRepository = patientRepository;
+            _patientsRepository = patientRepository;
         }
-        public void Handle(CreatePatientCommand command)
+        public Guid Handle(CreatePatientCommand command)
         {
             var patient = new Patient
             {
@@ -22,7 +22,8 @@ namespace Patient_Management_System.Handlers
                 LastName = command.LastName,
                 DateOfBirth = command.DateOfBirth
             };
-            _patientRepository.AddPatient(patient);
+            _patientsRepository.AddPatient(patient);
+            return patient.Id;
         }
     }
 }
