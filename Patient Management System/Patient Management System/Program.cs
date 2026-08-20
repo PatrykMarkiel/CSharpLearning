@@ -35,8 +35,8 @@ namespace Patient_Management_System
                 });
 
             Console.WriteLine($"ID: {patient.Id}");
-            Console.WriteLine($"First name: {patient.FirstName}");
-            Console.WriteLine($"Last name: {patient.LastName}");
+            Console.WriteLine($"First name: {patient.FirstName.Value}");
+            Console.WriteLine($"Last name: {patient.LastName.Value}");
             Console.WriteLine($"Date of birth: {patient.DateOfBirth}");
 
             UpdatePatientCommand updatePatientCommand = new UpdatePatientCommand
@@ -53,8 +53,8 @@ namespace Patient_Management_System
                 });
 
             Console.WriteLine($"ID: {patient.Id}");
-            Console.WriteLine($"First name: {patient.FirstName}");
-            Console.WriteLine($"Last name: {patient.LastName}");
+            Console.WriteLine($"First name: {patient.FirstName.Value}");
+            Console.WriteLine($"Last name: {patient.LastName.Value}");
             Console.WriteLine($"Date of birth: {patient.DateOfBirth}");
 
 

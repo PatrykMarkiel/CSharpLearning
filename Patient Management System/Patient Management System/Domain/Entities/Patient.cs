@@ -32,7 +32,7 @@ namespace Patient_Management_System.Domain.Entities
         public void ChangeFirstName(string firstName)
         {
             if (string.IsNullOrWhiteSpace(firstName))
-                throw new ArgumentException("First name cannot be empty.");
+                throw new ArgumentException("First name can not be empty.");
 
             FirstName = new FirstName(firstName);
         }
@@ -40,7 +40,7 @@ namespace Patient_Management_System.Domain.Entities
         public void ChangeLastName(string lastName)
         {
             if (string.IsNullOrWhiteSpace(lastName))
-                throw new ArgumentException("Last name cannot be empty.");
+                throw new ArgumentException("Last name can not be empty.");
 
             LastName = new LastName(lastName);
         }
@@ -50,7 +50,7 @@ namespace Patient_Management_System.Domain.Entities
             if (dateOfBirth.HasValue &&
                 dateOfBirth.Value > DateOnly.FromDateTime(DateTime.Today))
             {
-                throw new ArgumentException("Date of birth cannot be in the future.");
+                throw new ArgumentException("Date of birth can not be in the future.");
             }
 
             DateOfBirth = dateOfBirth;
