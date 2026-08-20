@@ -25,20 +25,9 @@ namespace Patient_Management_System.Handlers
                 return;
             }
 
-            if (command.FirstName != null)
-            {
-                patient.FirstName = command.FirstName;
-            }
-
-            if (command.LastName != null)
-            {
-                patient.LastName = command.LastName;
-            }
-
-            if (command.DateOfBirth.HasValue)
-            {
-                patient.DateOfBirth = command.DateOfBirth;
-            }
+            patient.ChangeFirstName(command.FirstName);
+            patient.ChangeLastName(command.LastName);
+            patient.ChangeDateOfBirth(command.DateOfBirth);
 
             _patientWriter.UpdatePatient(patient);
         }

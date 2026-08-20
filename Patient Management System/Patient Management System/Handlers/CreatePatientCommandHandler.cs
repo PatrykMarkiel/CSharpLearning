@@ -13,13 +13,11 @@ namespace Patient_Management_System.Handlers
         }
         public Guid Handle(CreatePatientCommand command)
         {
-            var patient = new Patient
-            {
-                Id = Guid.NewGuid(),
-                FirstName = command.FirstName,
-                LastName = command.LastName,
-                DateOfBirth = command.DateOfBirth
-            };
+            var patient = new Patient(
+                command.FirstName,
+                command.LastName,
+                command.DateOfBirth);
+
             _patientWriter.AddPatient(patient);
             return patient.Id;
         }

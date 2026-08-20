@@ -11,12 +11,11 @@ namespace Patient_Management_System.Repositories
         }
         public void UpdatePatient(Patient patient)
         {
-            var existingPatient = GetPatientById(patient.Id);
-            if (existingPatient != null)
+            var index = _patient.FindIndex(p => p.Id == patient.Id);
+
+            if (index != -1)
             {
-                existingPatient.FirstName = patient.FirstName;
-                existingPatient.LastName = patient.LastName;
-                existingPatient.DateOfBirth = patient.DateOfBirth;
+                _patient[index] = patient;
             }
         }
         public void RemovePatient(Guid id)
