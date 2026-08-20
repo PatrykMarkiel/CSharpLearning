@@ -1,6 +1,7 @@
-﻿using Patient_Management_System.Interface;
-using Patient_Management_System.Models;
-namespace Patient_Management_System.Repositories
+﻿using Patient_Management_System.Application.Interface;
+using Patient_Management_System.Domain.Entities;
+
+namespace Patient_Management_System.Infrastructure.Repositories
 {
     public class PatientRepository : IPatientReader, IPatientWriter
     {

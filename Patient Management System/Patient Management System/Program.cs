@@ -1,8 +1,8 @@
-﻿using Patient_Management_System.Commands;
-using Patient_Management_System.Handlers;
-using Patient_Management_System.Interface;
-using Patient_Management_System.Queries;
-using Patient_Management_System.Repositories;
+﻿using Patient_Management_System.Application.Commands;
+using Patient_Management_System.Application.Handlers;
+using Patient_Management_System.Application.Interface;
+using Patient_Management_System.Application.Queries;
+using Patient_Management_System.Infrastructure.Repositories;
 
 namespace Patient_Management_System
 {

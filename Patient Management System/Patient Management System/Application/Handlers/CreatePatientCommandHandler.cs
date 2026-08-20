@@ -1,8 +1,8 @@
-﻿using Patient_Management_System.Commands;
-using Patient_Management_System.Interface;
-using Patient_Management_System.Models;
+﻿using Patient_Management_System.Domain.Entities;
+using Patient_Management_System.Application.Interface;
+using Patient_Management_System.Application.Commands;
 
-namespace Patient_Management_System.Handlers
+namespace Patient_Management_System.Application.Handlers
 {
     internal class CreatePatientCommandHandler
     {

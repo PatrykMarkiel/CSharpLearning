@@ -1,4 +1,4 @@
-﻿namespace Patient_Management_System.Queries
+﻿namespace Patient_Management_System.Application.Queries
 {
     internal class GetPatientByIdQuery
     {

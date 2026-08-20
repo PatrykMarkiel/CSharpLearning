@@ -1,6 +1,6 @@
 ﻿using Patient_Management_System.Interface;
 
-namespace Patient_Management_System.Decorators
+namespace Patient_Management_System.Domain.Decorators
 {
     public class BloodTestDecorator : IPatient
     {

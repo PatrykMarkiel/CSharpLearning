@@ -1,7 +1,7 @@
-﻿using Patient_Management_System.Commands;
-using Patient_Management_System.Interface;
+﻿using Patient_Management_System.Application.Commands;
+using Patient_Management_System.Application.Interface;
 
-namespace Patient_Management_System.Handlers
+namespace Patient_Management_System.Application.Handlers
 {
     public class UpdatePatientCommandHandler
     {

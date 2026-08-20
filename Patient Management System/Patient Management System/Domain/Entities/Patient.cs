@@ -1,10 +1,10 @@
 ﻿using Patient_Management_System.Domain.ValueObjects;
-using Patient_Management_System.Interface;
+using Patient_Management_System.Application.Interface;
 
-namespace Patient_Management_System.Models
+namespace Patient_Management_System.Domain.Entities
 {
 
-     public class Patient : IPatient
+     public class Patient
     {
         public Guid Id { get; private set; }
         public FirstName FirstName { get; private set; }

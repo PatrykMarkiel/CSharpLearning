@@ -1,9 +1,8 @@
-﻿using Patient_Management_System.Interface;
-using Patient_Management_System.Models;
-using Patient_Management_System.Queries;
-using Patient_Management_System.Repositories;
+﻿using Patient_Management_System.Application.Interface;
+using Patient_Management_System.Application.Queries;
+using Patient_Management_System.Domain.Entities;
 
-namespace Patient_Management_System.Handlers
+namespace Patient_Management_System.Application.Handlers
 {
     internal class GetPatientByIdQueryHandler
     {

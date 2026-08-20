@@ -3,7 +3,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Patient_Management_System.Interface;
 using Patient_Management_System.Models;
-namespace Patient_Management_System.Decorators
+namespace Patient_Management_System.Domain.Decorators
 {
     public class LactoseIntoleranceDecorator : IPatient
     {

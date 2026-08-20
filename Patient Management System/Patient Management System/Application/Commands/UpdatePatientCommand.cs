@@ -1,4 +1,4 @@
-﻿namespace Patient_Management_System.Commands
+﻿namespace Patient_Management_System.Application.Commands
 {
     public class UpdatePatientCommand
     {

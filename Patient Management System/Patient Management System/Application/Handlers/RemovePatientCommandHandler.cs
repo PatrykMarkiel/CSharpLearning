@@ -1,7 +1,7 @@
-﻿using Patient_Management_System.Commands;
-using Patient_Management_System.Repositories;
-using Patient_Management_System.Interface;
-namespace Patient_Management_System.Handlers
+﻿using Patient_Management_System.Application.Commands;
+using Patient_Management_System.Application.Interface;
+
+namespace Patient_Management_System.Application.Handlers
 {
     public class RemovePatientCommandHandler
     {
