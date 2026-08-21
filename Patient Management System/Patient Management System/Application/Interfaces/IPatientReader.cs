@@ -4,7 +4,7 @@ namespace Patient_Management_System.Application.Interface
 {
     public interface IPatientReader
     {
-        Patient? GetPatientById(Guid id);
-        IEnumerable<Patient> GetAllPatients();
+        Task<Patient?> GetPatientByIdAsync(Guid id);
+        Task<IEnumerable<Patient>> GetAllPatientsAsync();
     }
 }

@@ -10,9 +10,9 @@ namespace Patient_Management_System.Application.Handlers
         {
             _patientWriter = patientWriter;
         }
-        public void Handle(RemovePatientCommand command)
+        public Task Handle(RemovePatientCommand command)
         {
-            _patientWriter.RemovePatient(command.Id);
+            return _patientWriter.RemovePatientAsync(command.Id);
         }
     }
 }

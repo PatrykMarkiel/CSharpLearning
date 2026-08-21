@@ -11,9 +11,9 @@ namespace Patient_Management_System.Application.Handlers
         {
             _patientReader = patientRepository;
         }
-        public Patient? Handle(GetPatientByIdQuery query)
+        public Task<Patient?> Handle(GetPatientByIdQuery query)
         {
-            return _patientReader.GetPatientById(query.Id);
+            return _patientReader.GetPatientByIdAsync(query.Id);
         }
     }
 }

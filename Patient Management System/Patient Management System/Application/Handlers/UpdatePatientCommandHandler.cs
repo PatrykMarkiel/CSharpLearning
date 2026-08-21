@@ -16,14 +16,9 @@ namespace Patient_Management_System.Application.Handlers
             _patientWriter = patientWriter;
         }
 
-        public void Handle(UpdatePatientCommand command)
+        public async Task Handle(UpdatePatientCommand command)
         {
-            var patient = _patientReader.GetPatientById(command.Id);
-
-            if (patient == null)
-            {
-                return;
-            }
+            var patient = await _patientReader.GetPatientByIdAsync(command.Id);
 
             if (patient == null)
             {
@@ -45,7 +40,7 @@ namespace Patient_Management_System.Application.Handlers
                 patient.ChangeDateOfBirth(command.DateOfBirth);
             }
 
-            _patientWriter.UpdatePatient(patient);
+            await _patientWriter.UpdatePatientAsync(patient);
         }
     }
 }

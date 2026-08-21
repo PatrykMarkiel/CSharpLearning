@@ -8,7 +8,7 @@ namespace Patient_Management_System
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             PatientRepository patientRepository = new PatientRepository();
             IPatientReader patientReader = patientRepository;
@@ -36,7 +36,7 @@ namespace Patient_Management_System
                     DateOfBirth = new DateOnly(1990, 1, 1)
                 });
 
-            var patients = getAllPatientsQueryHandler.Handle(
+            var patients = await getAllPatientsQueryHandler.Handle(
                 new GetAllPatientsQuery());
 
             foreach (var currentPatient in patients)
@@ -56,13 +56,13 @@ namespace Patient_Management_System
 
             updatePatientCommandHandler.Handle(updatePatientCommand);
 
-            var patient = getPatientByIdQueryHandler.Handle(
+            var patient = await getPatientByIdQueryHandler.Handle(
                 new GetPatientByIdQuery
                 {
                     Id = patientId
                 });
 
-            patients = getAllPatientsQueryHandler.Handle(
+            patients = await getAllPatientsQueryHandler.Handle(
                 new GetAllPatientsQuery());
 
             foreach (var currentPatient in patients)

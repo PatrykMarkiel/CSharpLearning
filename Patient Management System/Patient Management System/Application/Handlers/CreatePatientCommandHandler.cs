@@ -18,7 +18,7 @@ namespace Patient_Management_System.Application.Handlers
                 command.LastName,
                 command.DateOfBirth);
 
-            _patientWriter.AddPatient(patient);
+            _patientWriter.AddPatientAsync(patient);
             return patient.Id;
         }
     }

@@ -11,9 +11,9 @@ namespace Patient_Management_System.Application.Handlers
         {
             _patientReader = patientReader;
         }
-        public IEnumerable<Patient> Handle(GetAllPatientsQuery query)
+        public Task<IEnumerable<Patient>> Handle(GetAllPatientsQuery query)
         {
-            return _patientReader.GetAllPatients();
+            return _patientReader.GetAllPatientsAsync();
         }
     }
 }

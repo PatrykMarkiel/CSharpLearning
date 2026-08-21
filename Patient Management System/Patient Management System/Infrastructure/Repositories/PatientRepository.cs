@@ -6,11 +6,12 @@ namespace Patient_Management_System.Infrastructure.Repositories
     public class PatientRepository : IPatientReader, IPatientWriter
     {
         private readonly List<Patient> _patient = new();
-        public void AddPatient(Patient patient)
+        public Task AddPatientAsync(Patient patient)
         {
             _patient.Add(patient);
+            return Task.CompletedTask;
         }
-        public void UpdatePatient(Patient patient)
+        public Task UpdatePatientAsync(Patient patient)
         {
             var index = _patient.FindIndex(p => p.Id == patient.Id);
 
@@ -18,23 +19,26 @@ namespace Patient_Management_System.Infrastructure.Repositories
             {
                 _patient[index] = patient;
             }
+            return Task.CompletedTask;
         }
-        public void RemovePatient(Guid id)
+
+        public async Task RemovePatientAsync(Guid id)
         {
-            var patient = GetPatientById(id);
+            var patient = await GetPatientByIdAsync(id);
             if (patient != null)
             {
                 _patient.Remove(patient);
             }
         }
-        public Patient? GetPatientById(Guid id)
+        public Task<Patient?> GetPatientByIdAsync(Guid id)
         {
-            return _patient.Find(p => p.Id == id);
+            var patient =  _patient.Find(p => p.Id == id);
+            return Task.FromResult(patient);
 
         }
-        public IEnumerable<Patient> GetAllPatients()
+        public Task<IEnumerable<Patient>> GetAllPatientsAsync()
         {
-            return _patient;
+            return Task.FromResult<IEnumerable<Patient>>(_patient);
         }
     }
 }
