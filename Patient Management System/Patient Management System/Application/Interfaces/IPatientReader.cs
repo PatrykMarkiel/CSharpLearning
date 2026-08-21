@@ -5,5 +5,6 @@ namespace Patient_Management_System.Application.Interface
     public interface IPatientReader
     {
         Patient? GetPatientById(Guid id);
+        IEnumerable<Patient> GetAllPatients();
     }
 }

@@ -18,15 +18,43 @@ namespace Patient_Management_System
             UpdatePatientCommandHandler updatePatientCommandHandler = new UpdatePatientCommandHandler(patientReader, patientWriter);
             RemovePatientCommandHandler removePatientCommandHandler = new RemovePatientCommandHandler(patientWriter);
             GetPatientByIdQueryHandler getPatientByIdQueryHandler = new GetPatientByIdQueryHandler(patientReader);
+            GetAllPatientsQueryHandler getAllPatientsQueryHandler = new GetAllPatientsQueryHandler(patientReader);
 
-            CreatePatientCommand createPatientCommand = new CreatePatientCommand
+            Guid patientId = createPatientCommandHandler.Handle(
+                new CreatePatientCommand
+                {
+                    FirstName = "Jan",
+                    LastName = "Kowalski",
+                    DateOfBirth = new DateOnly(1990, 1, 1)
+                });
+
+            createPatientCommandHandler.Handle(
+                new CreatePatientCommand
+                {
+                    FirstName = "Joanna",
+                    LastName = "Dark",
+                    DateOfBirth = new DateOnly(1990, 1, 1)
+                });
+
+            var patients = getAllPatientsQueryHandler.Handle(
+                new GetAllPatientsQuery());
+
+            foreach (var currentPatient in patients)
             {
-                FirstName = "Jan",
-                LastName = "Kowalski",
-                DateOfBirth = new DateOnly(1990, 1, 1)
+                Console.WriteLine($"ID: {currentPatient.Id}");
+                Console.WriteLine($"First name: {currentPatient.FirstName.Value}");
+                Console.WriteLine($"Last name: {currentPatient.LastName.Value}");
+                Console.WriteLine($"Date of birth: {currentPatient.DateOfBirth}");
+                Console.WriteLine("/////////////////////");
+            }
+
+            UpdatePatientCommand updatePatientCommand = new UpdatePatientCommand
+            {
+                Id = patientId,
+                LastName = "Paweł",
             };
 
-            Guid patientId = createPatientCommandHandler.Handle(createPatientCommand);
+            updatePatientCommandHandler.Handle(updatePatientCommand);
 
             var patient = getPatientByIdQueryHandler.Handle(
                 new GetPatientByIdQuery
@@ -34,29 +62,17 @@ namespace Patient_Management_System
                     Id = patientId
                 });
 
-            Console.WriteLine($"ID: {patient.Id}");
-            Console.WriteLine($"First name: {patient.FirstName.Value}");
-            Console.WriteLine($"Last name: {patient.LastName.Value}");
-            Console.WriteLine($"Date of birth: {patient.DateOfBirth}");
+            patients = getAllPatientsQueryHandler.Handle(
+                new GetAllPatientsQuery());
 
-            UpdatePatientCommand updatePatientCommand = new UpdatePatientCommand
+            foreach (var currentPatient in patients)
             {
-                Id  = patientId,
-                LastName = "Paweł",
-            };
-            updatePatientCommandHandler.Handle(updatePatientCommand);
-
-            patient = getPatientByIdQueryHandler.Handle(
-                new GetPatientByIdQuery
-                {
-                    Id = patientId
-                });
-
-            Console.WriteLine($"ID: {patient.Id}");
-            Console.WriteLine($"First name: {patient.FirstName.Value}");
-            Console.WriteLine($"Last name: {patient.LastName.Value}");
-            Console.WriteLine($"Date of birth: {patient.DateOfBirth}");
-
+                Console.WriteLine($"ID: {currentPatient.Id}");
+                Console.WriteLine($"First name: {currentPatient.FirstName.Value}");
+                Console.WriteLine($"Last name: {currentPatient.LastName.Value}");
+                Console.WriteLine($"Date of birth: {currentPatient.DateOfBirth}");
+                Console.WriteLine();
+            }
 
             RemovePatientCommand removePatientCommand = new RemovePatientCommand
             {

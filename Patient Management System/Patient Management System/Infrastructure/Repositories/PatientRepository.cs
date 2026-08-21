@@ -32,5 +32,9 @@ namespace Patient_Management_System.Infrastructure.Repositories
             return _patient.Find(p => p.Id == id);
 
         }
+        public IEnumerable<Patient> GetAllPatients()
+        {
+            return _patient;
+        }
     }
 }
