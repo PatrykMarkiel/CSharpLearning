@@ -35,7 +35,7 @@ public class PatientRepository(string connectionString)
     {
         await using var connection = Connection();
 
-        const string sql = """ INSERT INTO Patients (Id, FirstName, LastName) VALUES (@Id, @FirstName, @LastName); """;
+        const string sql = """ INSERT INTO Patients (Id, FirstName, LastName) VALUES (@Id, @FirstName, @LastName);""";
 
         await connection.ExecuteAsync(sql, patient);
     }

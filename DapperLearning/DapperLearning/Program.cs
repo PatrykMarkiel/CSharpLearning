@@ -1,5 +1,5 @@
-﻿using DapperLearning.Models;
-using DapperLearning.Raw;
+﻿using DapperLearning.Dapper;
+using DapperLearning.Models;
 
 namespace DapperLearning;
 
@@ -21,22 +21,31 @@ internal class Program
 
         await repository.AddAsync(patient);
 
+        var patients = await repository.GetAllAsync();
+
+        foreach (var currentPatient in patients)
+        {
+            Console.WriteLine(
+                $"{currentPatient.Id}\t{currentPatient.FirstName}\t{currentPatient.LastName}");
+        }
+
+        var foundPatient = await repository.GetByIdAsync(patient.Id);
+
+        Console.WriteLine();
+        Console.WriteLine($"Found: {foundPatient?.FirstName} {foundPatient?.LastName}");
+
         patient.FirstName = "Jan";
         patient.LastName = "Paweł";
 
         await repository.UpdateAsync(patient);
 
-        var patients = await repository.GetAllAsync();
+        foundPatient = await repository.GetByIdAsync(patient.Id);
 
-        foreach (var currentPatient in patients)
-        {
-            Console.WriteLine($"ID: {currentPatient.Id}");
-            Console.WriteLine($"First name: {currentPatient.FirstName}");
-            Console.WriteLine($"Last name: {currentPatient.LastName}");
-            Console.WriteLine();
-        }
+        Console.WriteLine(
+            $"Updated: {foundPatient?.FirstName} {foundPatient?.LastName}");
 
-        await repository.GetByIdAsync(patient.Id);
         await repository.DeleteAsync(patient.Id);
+
+        Console.WriteLine("Patient deleted.");
     }
 }
