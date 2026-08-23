@@ -1,5 +1,6 @@
 ﻿using DapperLearning.Models;
 using Microsoft.Data.SqlClient;
+using DapperLearning.Dapper;
 
 namespace DapperLearning.Raw;
 
